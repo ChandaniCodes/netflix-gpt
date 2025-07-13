@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { LOGIN_LOGO } from "../utils/Constant";
-
+import { ValidateFormData } from "../utils/Validate";
 const Login = () => {
   const [isSignInForm, setisSignInForm] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const email = useRef(null);
+  const password = useRef(null);
+  const fullName = useRef(null);
 
   const toggleSignInForm = () => {
     setisSignInForm(!isSignInForm);
+  };
+  const handleFormValidation = () => {
+    // validate the form - email, password
+    const message = ValidateFormData(
+      fullName.current.value,
+      email.current.value,
+      password.current.value
+    );
+    setErrorMessage(message);
   };
   return (
     <div className="relative h-screen w-screen overflow-hidden">
@@ -24,35 +38,53 @@ const Login = () => {
           </div>
           {!isSignInForm && (
             <input
+              ref={fullName}
+              // required
               type="text"
-              placeholder="Enter Name"
+              placeholder="Full Name"
               className="w-full p-2 rounded bg-gray-800 text-white placeholder-gray-400"
             />
           )}
           <input
+            ref={email}
             type="email"
+            // required
             placeholder="Email Address"
             className="w-full p-2 rounded bg-gray-800 text-white placeholder-gray-400"
           />
           <input
+            ref={password}
             type="password"
+            // required
             placeholder="Password"
             className="w-full p-2 rounded bg-gray-800 text-white placeholder-gray-400"
           />
+          {errorMessage && (
+            <p className="text-red-600 text-xs">{errorMessage}</p>
+          )}
           <button
-            type="submit"
+            onSubmit={(e) => e.preventDefault()}
+            type="button"
+            onClick={handleFormValidation}
             className="w-full p-2 bg-red-600 hover:bg-red-700 rounded text-white font-semibold"
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
           </button>
-          <span className="text-gray-600">New to netflix ? </span>
+          <p className="text-gray-600" onClick={toggleSignInForm}>
+            {isSignInForm
+              ? "New to netflix ? Sign Up Now"
+              : "Already Registered Sign In Now"}
+          </p>
+          {/* <span className="text-gray-600">
+            {isSignInForm ? "New to netflix ? " : "Already Registered "}
+          </span>
           <button
             className="text-white "
             type="button"
             onClick={toggleSignInForm}
           >
-            Sign Up Now
-          </button>
+            {isSignInForm ? " Sign Up Now" : " Sign In Now"}
+          </button> */}
         </form>
       </div>
     </div>
