@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
-import { LOGIN_LOGO } from "../utils/Constant";
-import { ValidateFormData } from "../utils/Validate";
+import { LOGIN_LOGO } from "../utils/constant";
+import { ValidateFormData } from "../utils/formValidate.js";
 const Login = () => {
   const [isSignInForm, setisSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const email = useRef(null);
   const password = useRef(null);
-  const fullName = useRef(null);
+  // const fullName = useRef(null);
 
   const toggleSignInForm = () => {
     setisSignInForm(!isSignInForm);
@@ -16,7 +16,7 @@ const Login = () => {
   const handleFormValidation = () => {
     // validate the form - email, password
     const message = ValidateFormData(
-      fullName.current.value,
+      // fullName.current.value,
       email.current.value,
       password.current.value
     );
@@ -38,7 +38,7 @@ const Login = () => {
           </div>
           {!isSignInForm && (
             <input
-              ref={fullName}
+              // ref={fullName}
               // required
               type="text"
               placeholder="Full Name"
@@ -70,7 +70,7 @@ const Login = () => {
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
           </button>
-          <p className="text-gray-600" onClick={toggleSignInForm}>
+          <p className="text-gray-400" onClick={toggleSignInForm}>
             {isSignInForm
               ? "New to netflix ? Sign Up Now"
               : "Already Registered Sign In Now"}
