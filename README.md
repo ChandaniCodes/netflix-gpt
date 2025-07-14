@@ -10,6 +10,8 @@
  - Firebase Setup
  - Deploying our app to production
  - Create SignUp User Account
+ - Implement Sign In user Api
+ - Created Redux Store with userSlice
 
  # Features
  - Login/Sign Up
@@ -22,3 +24,13 @@
         - Title & Description
         - MovieSuggestions
             - MovieLists * N
+
+# Commands
+- Redux  
+   - npm i -D @reduxjs/toolkit
+   - npm i react-redux
+ - For Firebase
+   - npm install -g firebase-tools
+   - firebase login
+   - firebase init
+   - firebase deploy

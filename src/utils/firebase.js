@@ -25,9 +25,3 @@ const analytics = getAnalytics(app);
 
 export const auth = getAuth();
 // npm install -g firebase-tools
-
-/*
-firebase login
-firebase init
-firebase deploy
-*/
