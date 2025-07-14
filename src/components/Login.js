@@ -1,7 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { use, useRef, useState } from "react";
 import Header from "./Header";
 import { LOGIN_LOGO } from "../utils/constant";
 import { ValidateFormData } from "../utils/formValidate.js";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase.js";
+
 const Login = () => {
   const [isSignInForm, setisSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -21,6 +27,42 @@ const Login = () => {
       password.current.value
     );
     setErrorMessage(message);
+
+    if (message !== null) return;
+
+    if (!isSignInForm) {
+      // signup logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+    } else {
+      // signin logic
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + ":" + errorMessage);
+        });
+    }
   };
   return (
     <div className="relative h-screen w-screen overflow-hidden">
