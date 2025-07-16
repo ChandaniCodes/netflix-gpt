@@ -2,9 +2,11 @@ import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { LOGIN_LOGO } from "../utils/constant";
 import { ValidateFormData } from "../utils/formValidate.js";
+import { useDispatch } from "react-redux";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
 import { useNavigate } from "react-router-dom";
@@ -14,10 +16,11 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const email = useRef(null);
   const password = useRef(null);
-  // const fullName = useRef(null);
+  const fullName = useRef(null);
 
   const toggleSignInForm = () => {
     setisSignInForm(!isSignInForm);
@@ -42,8 +45,26 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
+          updateProfile(user, {
+            displayName: fullName.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/58761950?v=4",
+          })
+            .then(() => {
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              setErrorMessage(errorCode + "-" + errorMessage);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -72,20 +93,24 @@ const Login = () => {
   return (
     <div className="relative h-screen w-screen overflow-hidden">
       <img
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover z-0"
         src={LOGIN_LOGO}
         alt="login_logo"
       />
-      <Header />
 
+      <div className="absolute top-0 left-0 right-0 z-10">
+        <Header />
+      </div>
+
+      <div className="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
       <div className="absolute inset-0 flex items-center justify-center z-10">
-        <form className="bg-black bg-opacity-70 p-8 rounded-md space-y-5 text-white w-80">
+        <form className="bg-black bg-opacity-80 p-8 rounded-md space-y-5 text-white w-80">
           <div className=" text-white font-semibold text-2xl">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </div>
           {!isSignInForm && (
             <input
-              // ref={fullName}
+              ref={fullName}
               // required
               type="text"
               placeholder="Full Name"
