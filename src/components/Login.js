@@ -9,13 +9,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
-import { useNavigate } from "react-router-dom";
+
+import { addUser } from "../utils/userSlice.js";
 
 const Login = () => {
   const [isSignInForm, setisSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const email = useRef(null);
@@ -50,6 +49,7 @@ const Login = () => {
             photoURL: "https://avatars.githubusercontent.com/u/58761950?v=4",
           })
             .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(
                 addUser({
                   uid: uid,
@@ -58,7 +58,7 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
+             
             })
             .catch((error) => {
               const errorCode = error.code;
@@ -80,8 +80,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -104,7 +102,7 @@ const Login = () => {
 
       <div className="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
       <div className="absolute inset-0 flex items-center justify-center z-10">
-        <form className="bg-black bg-opacity-80 p-8 rounded-md space-y-5 text-white w-80">
+        <form className="bg-black bg-opacity-80 p-8 rounded-md space-y-6 text-white w-80">
           <div className=" text-white font-semibold text-2xl">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </div>
@@ -142,7 +140,10 @@ const Login = () => {
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
           </button>
-          <p className="text-gray-400" onClick={toggleSignInForm}>
+          <p
+            className="text-gray-200 text-sm cursor-pointer"
+            onClick={toggleSignInForm}
+          >
             {isSignInForm
               ? "New to netflix ? Sign Up Now"
               : "Already Registered Sign In Now"}
