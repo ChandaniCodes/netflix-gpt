@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
-import { LOGIN_LOGO } from "../utils/constant";
+import { LOGIN_LOGO, USRE_AVATAR } from "../utils/constant";
 import { ValidateFormData } from "../utils/formValidate.js";
 import { useDispatch } from "react-redux";
 import {
@@ -46,7 +46,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: fullName.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/58761950?v=4",
+            photoURL: USRE_AVATAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -58,7 +58,6 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-             
             })
             .catch((error) => {
               const errorCode = error.code;

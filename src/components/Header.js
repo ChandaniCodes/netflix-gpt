@@ -21,7 +21,7 @@ const Header = () => {
       });
   };
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // sign up & sign in
         const { uid, email, displayName, photoURL } = user;
@@ -40,6 +40,8 @@ const Header = () => {
         // User is signed out
       }
     });
+    //  unsubscription will called on unmount
+    return () => unsubscribe();
   }, []);
   const isLoginPage = location.pathname === "/";
   const headerBgClass = isLoginPage
