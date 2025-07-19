@@ -5,7 +5,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
-import { HEADER_LOGO } from "../utils/constant.js";
+import { HEADER_LOGO } from "../utils/constantUrl.js";
 
 const Header = () => {
   const navigate = useNavigate();

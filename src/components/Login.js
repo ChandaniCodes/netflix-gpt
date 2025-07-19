@@ -8,7 +8,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
-import { LOGIN_LOGO, USRE_AVATAR } from "../utils/constant.js";
+import { LOGIN_LOGO, USRE_AVATAR } from "../utils/constantUrl.js";
 import { addUser } from "../utils/userSlice.js";
 
 const Login = () => {
