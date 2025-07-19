@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { HEADER_LOGO } from "../utils/constant";
 import { FaSignOutAlt } from "react-icons/fa";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
+import { HEADER_LOGO } from "../utils/constant.js";
 
 const Header = () => {
   const navigate = useNavigate();

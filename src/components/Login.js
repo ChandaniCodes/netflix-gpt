@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
-import { LOGIN_LOGO, USRE_AVATAR } from "../utils/constant";
 import { ValidateFormData } from "../utils/formValidate.js";
 import { useDispatch } from "react-redux";
 import {
@@ -9,7 +8,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
-
+import { LOGIN_LOGO, USRE_AVATAR } from "../utils/constant.js";
 import { addUser } from "../utils/userSlice.js";
 
 const Login = () => {
