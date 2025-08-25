@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { API_NOW_PLAYING } from "../utils/constantUrl";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addMovieTrailer } from "../utils/movieSlice";
 
-const useMovieTrailer = ({ movieId }) => {
+const useMovieTrailer = (movieId) => {
   const dispatch = useDispatch();
   const getMovieVideo = async () => {
     const data = await fetch(
