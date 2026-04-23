@@ -65,8 +65,7 @@ Suggested movies are displayed in real time for better engagement
     - MovieSuggestions
       - MovieLists \* N
 
-# Commands
-
+Commands
 - Redux
   - npm i -D @reduxjs/toolkit
   - npm i react-redux
