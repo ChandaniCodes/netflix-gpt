@@ -1,4 +1,33 @@
-# Netflix GPT
+🎬 Cinemax-GPT
+
+A Netflix-style movie streaming web application built using modern frontend technologies. Cinemax-GPT provides users with a seamless browsing experience, multilingual search support, authentication system, and AI-powered movie recommendations for a personalized experience.
+
+🚀 Features
+ - Movie Browsing Interface
+ - Authentication System
+ - Multilingual Search
+ - AI-Powered Recommendations
+ - Real-Time Movie Data
+ - State Management
+ - Fully Responsive UI
+
+🛠️ Tech Stack
+React.js
+Tailwind CSS
+Redux Toolkit
+JavaScript (ES6+)
+TMDB API
+OpenAI API
+
+⚙️ How It Works
+
+Users sign in to access the platform
+Movies are fetched dynamically from TMDB API
+Users can search movies with multilingual support
+AI analyzes user input and generates personalized recommendations
+Suggested movies are displayed in real time for better engagement
+
+# Project Details
 
 - Create React App
 - Configured TailwindCSS
@@ -23,7 +52,7 @@
 - Add hardcoded values to the constants file
 - Regiter TMDB API & create an app & get access token
 
-# Features
+# Browse Page
 
 - Login/Sign Up
   - Sign In /Sign up Form
