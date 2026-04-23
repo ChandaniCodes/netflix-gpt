@@ -12,20 +12,20 @@ A Netflix-style movie streaming web application built using modern frontend tech
  - Fully Responsive UI
 
 🛠️ Tech Stack
-React.js
-Tailwind CSS
-Redux Toolkit
-JavaScript (ES6+)
-TMDB API
-OpenAI API
+ - React.js
+ - Tailwind CSS
+ - Redux Toolkit
+ - JavaScript (ES6+)
+ - TMDB API
+ - OpenAI API
 
 ⚙️ How It Works
 
-Users sign in to access the platform
-Movies are fetched dynamically from TMDB API
-Users can search movies with multilingual support
-AI analyzes user input and generates personalized recommendations
-Suggested movies are displayed in real time for better engagement
+ - Users sign in to access the platform
+ - Movies are fetched dynamically from TMDB API
+ - Users can search movies with multilingual support
+ - AI analyzes user input and generates personalized recommendations
+ - Suggested movies are displayed in real time for better engagement
 
 # Project Details
 
