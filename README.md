@@ -48,6 +48,6 @@
   - firebase deploy
 
 <!-- other things
-  TMDB - movie database - API
+  TMDB - movie database - APIs
 
  -->
